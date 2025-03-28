@@ -14,6 +14,10 @@ namespace Progetto_BE_S7.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 		public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 		public DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }
+        
+        public DbSet<Artista> Artisti {  get; set; }
+        public DbSet<Evento> Eventi {  get; set; }
+        public DbSet<Biglietto> Biglietti {  get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -64,7 +64,7 @@ namespace Progetto_BE_S7.Controllers
                     message = "Ops qualcosa e' andato storto"
                 });
             }
-            //TODO
+            
             await _userManager.AddToRoleAsync(user, "Utente");
 
             return Ok(new

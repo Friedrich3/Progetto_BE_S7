@@ -9,5 +9,16 @@ namespace Progetto_BE_S7.Services
         {
             _context = context;
         }
+        private async Task<bool> SaveAsync()
+        {
+            try
+            {
+                return await _context.SaveChangesAsync() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

@@ -54,6 +54,8 @@ builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 builder.Services.AddScoped<RoleManager<ApplicationRole>>();
 
 builder.Services.AddScoped<ArtistaServices>();
+builder.Services.AddScoped<EventoServices>();
+builder.Services.AddScoped<BigliettoServices>();
 
 var app = builder.Build();
 

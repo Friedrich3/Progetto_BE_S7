@@ -49,7 +49,7 @@ namespace Progetto_BE_S7.Controllers
                 }
                 return Ok(new { message = "Artista aggiornato correttamente!" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(500, "Errore interno del sistema");
             }
@@ -68,7 +68,7 @@ namespace Progetto_BE_S7.Controllers
                 }
                 return Ok(new { message = "Artista eliminato correttamente!" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(500, "Errore interno del sistema");
             }
@@ -92,7 +92,7 @@ namespace Progetto_BE_S7.Controllers
 
                 return Ok(new { message = $" Risultati trovati: {result.Count()}" , artisti = result});
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return StatusCode(500, "Errore interno del sistema");
             }

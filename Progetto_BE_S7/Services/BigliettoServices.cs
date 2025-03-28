@@ -11,9 +11,11 @@ namespace Progetto_BE_S7.Services
     public class BigliettoServices
     {
         private readonly ApplicationDbContext _context;
-        public BigliettoServices (ApplicationDbContext context)
+        private readonly ILogger<BigliettoServices> _logger;
+        public BigliettoServices (ApplicationDbContext context, ILogger<BigliettoServices> logger)
         {
             _context = context;
+            _logger = logger;
         }
         private async Task<bool> SaveAsync()
         {
@@ -107,6 +109,7 @@ namespace Progetto_BE_S7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }

@@ -33,7 +33,7 @@ namespace Progetto_BE_S7.Controllers
             catch (Exception ex)
             {
 
-                return StatusCode(500, "Errore interno del sistema");
+                return StatusCode(500, ex.Message);
             }
         }
         [Authorize(Roles = "Amministratore")]
@@ -51,7 +51,7 @@ namespace Progetto_BE_S7.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Errore interno del sistema");
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -70,7 +70,7 @@ namespace Progetto_BE_S7.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Errore interno del sistema");
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -94,10 +94,10 @@ namespace Progetto_BE_S7.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Errore interno del sistema");
+                return StatusCode(500, ex.Message);
             }
-
         }
+
         [Authorize(Roles = "Amministratore")]
         [HttpGet("artist")]
         public async Task<IActionResult> GetAll([FromQuery] int artistid)
@@ -113,21 +113,9 @@ namespace Progetto_BE_S7.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Errore interno del sistema");
+                return StatusCode(500, ex.Message);
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

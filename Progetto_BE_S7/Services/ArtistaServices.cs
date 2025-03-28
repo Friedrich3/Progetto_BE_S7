@@ -9,9 +9,11 @@ namespace Progetto_BE_S7.Services
     public class ArtistaServices
     {
         private readonly ApplicationDbContext _context;
-        public ArtistaServices(ApplicationDbContext context)
+        private readonly ILogger<ArtistaServices> _logger;
+        public ArtistaServices(ApplicationDbContext context, ILogger<ArtistaServices> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         private async Task<bool> SaveAsync()
@@ -20,8 +22,9 @@ namespace Progetto_BE_S7.Services
             {
                 return await _context.SaveChangesAsync() > 0;
             }
-            catch
+            catch (Exception ex) 
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }
@@ -39,8 +42,9 @@ namespace Progetto_BE_S7.Services
                 _context.Artisti.Add(artista);
                 return await SaveAsync();
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }
@@ -59,6 +63,7 @@ namespace Progetto_BE_S7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }
@@ -72,8 +77,9 @@ namespace Progetto_BE_S7.Services
                 _context.Artisti.Remove(artista);
                 return await SaveAsync();
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }

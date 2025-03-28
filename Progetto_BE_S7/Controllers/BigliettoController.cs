@@ -12,9 +12,11 @@ namespace Progetto_BE_S7.Controllers
     public class BigliettoController : ControllerBase
     {
         private readonly BigliettoServices _bigliettoServices;
-        public BigliettoController(BigliettoServices bigliettoServices)
+        private readonly ILogger<BigliettoController> _logger;	
+        public BigliettoController(BigliettoServices bigliettoServices, ILogger<BigliettoController> logger)
         {
             _bigliettoServices = bigliettoServices;
+            _logger = logger;
         }
 
         [Authorize(Roles = "Amministratore")]
@@ -37,7 +39,8 @@ namespace Progetto_BE_S7.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Errore interno del sistema");
+
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -61,7 +64,7 @@ namespace Progetto_BE_S7.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Errore interno del sistema");
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -102,7 +105,7 @@ namespace Progetto_BE_S7.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Errore interno del sistema");
+                return StatusCode(500, ex.Message);
             }
         }
 

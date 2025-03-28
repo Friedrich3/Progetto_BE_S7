@@ -9,9 +9,11 @@ namespace Progetto_BE_S7.Services
     public class EventoServices
     {
         private readonly ApplicationDbContext _context;
-        public EventoServices(ApplicationDbContext context)
+        private readonly ILogger<EventoServices> _logger;
+        public EventoServices(ApplicationDbContext context, ILogger<EventoServices> logger)
         {
             _context = context;
+            _logger = logger;
         }
         private async Task<bool> SaveAsync()
         {
@@ -43,6 +45,7 @@ namespace Progetto_BE_S7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }
@@ -62,6 +65,7 @@ namespace Progetto_BE_S7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }
@@ -76,6 +80,7 @@ namespace Progetto_BE_S7.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, ex.Message);
                 return false;
             }
         }

@@ -55,6 +55,34 @@ namespace Progetto_BE_S7.Services
 
             return ListaTickets;
         }
+        public async Task<List<SingleBigliettoRequestDto>> GetAllTickets(int eventid)
+        {
+            List<SingleBigliettoRequestDto>? ListaTickets = null;
+            var data = await _context.Biglietti.Include(p => p.User).Include(p => p.Evento).ThenInclude(p => p.Artista).Where(p=>p.EventoId == eventid).ToListAsync();
+            if (data == null) return ListaTickets;
+
+            ListaTickets = data.Select(item => new SingleBigliettoRequestDto()
+            {
+                BigliettoId = item.BigliettoId,
+                DataAcquisto = item.DataAcquisto,
+                UserEmail = item.User.Email,
+                Evento = new EventoFromTicketRequestDto()
+                {
+                    EventoId = item.Evento.EventoId,
+                    Titolo = item.Evento.Titolo,
+                    Data = item.Evento.Data,
+                    Luogo = item.Evento.Luogo,
+                    Artista = new SingleArtistaDto()
+                    {
+                        ArtistaId = item.Evento.Artista.ArtistaId,
+                        Nome = item.Evento.Artista.Nome,
+                        Genere = item.Evento.Artista.Genere,
+                    }
+                }
+            }).ToList();
+
+            return ListaTickets;
+        }
 
 
         public async Task<bool> BuyNew( AcquistoBigliettoDto acquistoBigliettoDto , string userEmail)

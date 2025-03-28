@@ -41,14 +41,32 @@ namespace Progetto_BE_S7.Controllers
             }
         }
 
-        //[Authorize(Roles = "Amministratore")]
-        //[HttpGet("TicketsBy")]
-        //public async Task<IActionResult> TicketsBy([FromQuery]int eventId)
-        //{
+        [Authorize(Roles = "Amministratore")]
+        [HttpGet("TicketsBy")]
+        public async Task<IActionResult> TicketsBy([FromQuery] int eventId)
+        {
+            try
+            {
+                var result = await _bigliettoServices.GetAllTickets(eventId);
+                if (result == null)
+                {
+                    return BadRequest(new { message = "Ops qualcosa e' andato storto" });
+                }
+                if (!result.Any())
+                {
+                    return NoContent();
+                }
+                return Ok(new { message = $" Risultati trovati: {result.Count()}", eventi = result });
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Errore interno del sistema");
+            }
+        }
 
 
-
-        //}
+       
 
         [Authorize]
         [HttpPost("buyTicket")]

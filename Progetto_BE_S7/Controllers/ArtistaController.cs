@@ -98,6 +98,25 @@ namespace Progetto_BE_S7.Controllers
             }
 
         }
+        [Authorize(Roles = "Amministratore")]
+        [HttpGet("artist")]
+        public async Task<IActionResult> GetAll([FromQuery] int artistid)
+        {
+            try
+            {
+                var result = await _artistaServices.GetArtist(artistid);
+                if (result == null)
+                {
+                    return BadRequest(new { message = "Ops qualcosa e' andato storto" });
+                }
+                return Ok(new { message = "Artista trovato con successo", artisti = result });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Errore interno del sistema");
+            }
+
+        }
 
 
 

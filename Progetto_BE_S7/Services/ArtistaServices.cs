@@ -100,6 +100,20 @@ namespace Progetto_BE_S7.Services
             return ListaArtisti;
         }
 
+        public async Task<SingleArtistResponseDto> GetArtist(int id)
+        {
+            var artista = await _context.Artisti.FirstOrDefaultAsync(p=> p.ArtistaId == id);
+            if (artista == null) return null;
+            var result = new SingleArtistResponseDto()
+            {
+                ArtistaId = artista.ArtistaId,
+                Nome = artista.Nome,
+                Genere = artista.Genere,
+                Biografia = artista.Biografia,
+            };
+            return result;
+        }
+
 
     }
 }

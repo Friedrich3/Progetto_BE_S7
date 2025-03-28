@@ -5,6 +5,7 @@
         public required string Titolo { get; set; }
         public required DateTime Data { get; set; }
         public required string Luogo { get; set; }
+        public required int numeroBiglietti { get; set; }
         public required int ArtistaId { get; set; }
     }
 }

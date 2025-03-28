@@ -13,6 +13,10 @@ namespace Progetto_BE_S7.Models
         public required DateTime Data {  get; set; }
         [Required]
         public required string Luogo { get; set; }
+        [Required]
+        [Range(1,999)]
+        public required int numeroBiglietti { get; set; }
+
 
         [Required]
         public int ArtistaId { get; set; }

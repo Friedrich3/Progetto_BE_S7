@@ -34,6 +34,7 @@ namespace Progetto_BE_S7.Services
                     Titolo = createEventoRequest.Titolo,
                     Data = createEventoRequest.Data,
                     Luogo = createEventoRequest.Luogo,
+                    numeroBiglietti = createEventoRequest.numeroBiglietti,
                     ArtistaId = createEventoRequest.ArtistaId
                 };
                 _context.Eventi.Add(evento);
@@ -55,6 +56,7 @@ namespace Progetto_BE_S7.Services
                 evento.Titolo = updateEventoRequest.Titolo;
                 evento.Data = updateEventoRequest.Data;
                 evento.Luogo = updateEventoRequest.Luogo;
+                evento.numeroBiglietti = updateEventoRequest.numeroBiglietti;
                 //evento.ArtistaId = updateEventoRequest.ArtistaId;
                 return await SaveAsync();
             }
@@ -89,6 +91,7 @@ namespace Progetto_BE_S7.Services
                 Titolo = ev.Titolo,
                 Data = ev.Data,
                 Luogo = ev.Luogo,
+                numeroBiglietti = ev.numeroBiglietti,
                 Artista = new SingleArtistaDto()
                 {
                     ArtistaId = ev.Artista.ArtistaId,
@@ -109,7 +112,8 @@ namespace Progetto_BE_S7.Services
                 Titolo = evento.Titolo,
                 Data = evento.Data,
                 Luogo = evento.Luogo,
-                ArtistaId = evento.Artista.ArtistaId,
+                numeroBiglietti= evento.numeroBiglietti,
+                ArtistaId = evento.ArtistaId,
             };
             return result;
         }

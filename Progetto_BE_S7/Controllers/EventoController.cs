@@ -81,12 +81,12 @@ namespace Progetto_BE_S7.Controllers
         }
 
         [Authorize(Roles = "Amministratore")]
-        [HttpPut("update/{id:int}")]
-        public async Task<IActionResult> UpdateEvento(int id, [FromBody] UpdateEventoRequestDto updateEventoRequest)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateEvento([FromQuery] int eventId, [FromBody] UpdateEventoRequestDto updateEventoRequest)
         {
             try
             {
-                var result = await _eventoServices.Update(id, updateEventoRequest);
+                var result = await _eventoServices.Update(eventId, updateEventoRequest);
                 if (!result)
                 {
                     return BadRequest(new { message = "Ops, qualcosa e' andato storto" });
